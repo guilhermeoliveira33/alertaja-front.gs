@@ -1,34 +1,21 @@
-function configurarContato() {
-    const form = document.getElementById("form-contato");
-    if (!form) return;
+const formContato = document.getElementById("form-contato");
+const retornoContato = document.getElementById("retorno-contato");
 
-    const inputNome = document.getElementById("nome-contato");
-    const inputEmail = document.getElementById("email-contato");
-    const inputAssunto = document.getElementById("assunto-contato");
-    const inputMensagem = document.getElementById("mensagem-contato");
-    const retorno = document.getElementById("retorno-contato");
+if (formContato && retornoContato) {
+    formContato.addEventListener("submit", function (evento) {
+        evento.preventDefault();
 
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const nome = inputNome.value.trim();
-        const email = inputEmail.value.trim();
-        const assunto = inputAssunto.value.trim();
-        const mensagem = inputMensagem.value.trim();
+        const nome = document.getElementById("nome-contato").value.trim();
+        const email = document.getElementById("email-contato").value.trim();
+        const assunto = document.getElementById("assunto-contato").value.trim();
+        const mensagem = document.getElementById("mensagem-contato").value.trim();
 
         if (!nome || !email || !assunto || !mensagem) {
-            retorno.textContent = "Preencha nome, e-mail, assunto e mensagem para testar o envio demonstrativo.";
+            retornoContato.textContent = "Preencha todos os campos antes de enviar.";
             return;
         }
 
-        if (!email.includes("@") || !email.includes(".")) {
-            retorno.textContent = "Digite um endereço de e-mail válido no campo de contato.";
-            return;
-        }
-
-        retorno.textContent = `Mensagem demonstrativa validada para ${nome} (${email}) sobre "${assunto}". Nenhum dado foi enviado a servidor externo.`;
-        form.reset();
+        retornoContato.textContent = `Mensagem enviada, ${nome}. Recebemos seu contato sobre "${assunto}".`;
+        formContato.reset();
     });
 }
-
-configurarContato();
