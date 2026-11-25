@@ -1,21 +1,117 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-principal: #0077b6;
+    --cor-secundaria: #00b4d8;
+    --cor-escura: #1d3557;
+    --cor-clara: #f4f8fb;
+    --cor-texto: #263238;
+    --cor-branca: #ffffff;
+    --cor-borda: #dce6f0;
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --transicao-suave: all 0.25s ease;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto);
+    background-color: var(--cor-clara);
+    line-height: 1.65;
+}
+
+header {
+    background: linear-gradient(135deg, var(--cor-escura) 0%, var(--cor-principal) 100%);
+    color: var(--cor-branca);
+    text-align: center;
+    padding: 2rem 1.25rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.4rem;
+}
+
+header p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #e8f4fa;
+}
+
+#btn-menu {
+    display: none;
+    margin: 0.9rem auto 0 auto;
+    padding: 0.55rem 1.1rem;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-escura);
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicao-suave);
+}
+
+#btn-menu:hover {
+    background-color: var(--cor-branca);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.4rem;
+    background-color: var(--cor-escura);
+    padding: 0.85rem 1rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    color: var(--cor-branca);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 5px;
+    transition: var(--transicao-suave);
+}
+
+nav a:hover {
+    color: var(--cor-secundaria);
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Pagina principal (index.html) mantem o bloco principal estruturado */
+main {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 1.85rem;
+    background-color: var(--cor-branca);
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
 main h2 {
-    color: #082e55;
-    font-size: 1.6em;
-    margin-bottom: 12px;
+    color: var(--cor-escura);
+    font-size: 1.65rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--cor-borda);
 }
 
 main h3 {
-    color: #ffffff;
-    background-color: #082e55;
-    padding: 8px 12px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    font-size: 1.15em;
+    color: var(--cor-principal);
+    font-size: 1.2rem;
+    margin-top: 1.4rem;
+    margin-bottom: 0.5rem;
 }
 
 main p {
-    margin: 12px 0;
+    margin: 0.85rem 0;
     text-align: justify;
 }
 
@@ -23,96 +119,205 @@ p.centro {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin: 18px 0;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
 }
 
 .img-banner {
     width: 100%;
+    max-height: 340px;
+    object-fit: cover;
     display: block;
-    margin: 12px 0 16px 0;
+    margin: 1rem 0 1.25rem 0;
     border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .botao {
     display: inline-block;
-    background-color: #082e55;
-    color: #ffffff;
+    background-color: var(--cor-principal);
+    color: var(--cor-branca);
+    padding: 0.65rem 1.25rem;
     text-decoration: none;
-    font-weight: bold;
-    padding: 10px 16px;
-    border: none;
     border-radius: 6px;
+    font-weight: bold;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.25s ease;
+    transition: var(--transicao-suave);
 }
 
 .botao:hover {
-    background-color: #13508c;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-escura);
+    transform: translateY(-2px);
 }
 
 aside {
-    background-color: #e4eef7;
-    padding: 16px;
-    margin-top: 22px;
+    margin-top: 2rem;
+    padding: 1.25rem;
+    background-color: var(--cor-clara);
+    border-left: 4px solid var(--cor-principal);
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 aside h3 {
-    margin: -16px -16px 12px -16px;
-    border-radius: 8px 8px 0 0;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    color: #082e55;
-    margin: 12px 0 6px 0;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #8fa9c2;
-    border-radius: 6px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1em;
-}
-
-.cartao {
-    background-color: #f4f8fc;
-    border-left: 5px solid #082e55;
-    padding: 14px;
-    margin-top: 14px;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-}
-
-.cartao img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    object-position: center 20%;
-    display: block;
-    margin: 10px 0;
-    border-radius: 50%;
-    border: 3px solid #082e55;
+    margin-top: 0;
 }
 
 .aviso {
     font-weight: bold;
-    color: #082e55;
-    margin-top: 12px;
+    color: var(--cor-escura);
+    margin-top: 1rem;
+}
+
+label {
+    display: block;
+    margin: 0.9rem 0 0.35rem 0;
+    font-weight: 600;
+    color: var(--cor-escura);
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #c5d1de;
+    border-radius: 6px;
+    font-family: var(--fonte-principal);
+    font-size: 1rem;
+    transition: var(--transicao-suave);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--cor-principal);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15);
+}
+
+/* Paginas secundarias: menos caixas iguais e mais layout lado a lado */
+body.pagina-mapa main,
+body.pagina-ocorrencias main,
+body.pagina-sobre main,
+body.pagina-faq main,
+body.pagina-contato main,
+body.pagina-equipe main {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0.5rem 1.25rem 2rem 1.25rem;
+}
+
+body.pagina-mapa #lista-bairros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+body.pagina-mapa .item-lista,
+body.pagina-mapa .cartao {
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-borda);
+    border-top: 4px solid var(--cor-secundaria);
+    border-radius: 10px;
+    padding: 1.1rem;
+    margin-top: 0;
+}
+
+body.pagina-ocorrencias main > article,
+body.pagina-ocorrencias aside {
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 1.25rem;
+}
+
+body.pagina-sobre main > article,
+body.pagina-faq main > article,
+body.pagina-contato main > article {
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 1.75rem;
+}
+
+body.pagina-sobre main h3 {
+    padding-left: 0.75rem;
+    border-left: 3px solid var(--cor-principal);
+}
+
+body.pagina-faq main h3 {
+    background-color: var(--cor-clara);
+    padding: 0.65rem 0.9rem;
+    border-radius: 6px;
+}
+
+body.pagina-faq main h3 + p {
+    padding-left: 0.85rem;
+}
+
+/* Pagina da equipe: alinhamento simples e seguro */
+body.pagina-equipe main > article {
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 1.75rem;
+}
+
+.integrantes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.integrante {
+    flex: 1 1 230px;
+    max-width: 265px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    background-color: var(--cor-clara);
+    border: 1px solid var(--cor-borda);
+    border-top: 4px solid var(--cor-principal);
+    border-radius: 8px;
+    padding: 1.25rem 1rem;
+}
+
+.foto-integrante {
+    width: 115px;
+    height: 115px;
+    object-fit: cover;
+    object-position: center 15%;
+    border-radius: 50%;
+    border: 3px solid var(--cor-principal);
+    display: block;
+}
+
+.dados-integrante h3 {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    color: var(--cor-escura);
+    font-size: 1.1rem;
+}
+
+.dados-integrante p {
+    margin: 0.2rem 0;
+    text-align: center;
+    font-size: 0.95rem;
 }
 
 footer {
-    background-color: #051d36;
-    color: #ffffff;
+    background-color: var(--cor-escura);
+    color: var(--cor-branca);
     text-align: center;
-    font-size: 0.9em;
-    padding: 14px;
+    padding: 1.25rem;
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
 }
 
 @media screen and (max-width: 650px) {
@@ -127,5 +332,24 @@ footer {
     nav.aberto {
         display: flex;
         flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    nav a {
+        text-align: center;
+    }
+
+    main {
+        margin: 1rem 0.75rem 2rem 0.75rem;
+        padding: 1.25rem;
+    }
+
+    body.pagina-mapa main,
+    body.pagina-ocorrencias main,
+    body.pagina-sobre main,
+    body.pagina-faq main,
+    body.pagina-contato main,
+    body.pagina-equipe main {
+        padding: 0.5rem 0.75rem 1.5rem 0.75rem;
     }
 }
