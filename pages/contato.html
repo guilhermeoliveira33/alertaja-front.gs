@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlertaJá - Contato</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>AlertaJá</h1>
+        <p>Canal demonstrativo de contato do protótipo acadêmico</p>
+        <button type="button" id="btn-menu">☰ Menu</button>
+    </header>
+
+    <nav id="menu-principal">
+        <a href="../index.html">Início</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="ocorrencias.html">Registrar</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contato.html">Contato</a>
+        <a href="integrantes.html">Equipe</a>
+    </nav>
+
+    <main>
+        <article>
+            <h2>Contato Demonstrativo</h2>
+            <p>Use o formulário abaixo para testar a validação de campos do protótipo do <strong>Alerta Já</strong> na Global Solution da FIAP. Esta simulação não envia mensagens para um servidor real e não substitui os canais oficiais da Defesa Civil.</p>
+
+            <form id="form-contato">
+                <label for="nome-contato">Nome completo:</label>
+                <input type="text" id="nome-contato" placeholder="Ex.: Guilherme de Oliveira Andrade">
+
+                <label for="email-contato">E-mail:</label>
+                <input type="email" id="email-contato" placeholder="Ex.: contato@exemplo.com">
+
+                <label for="assunto-contato">Assunto:</label>
+                <input type="text" id="assunto-contato" placeholder="Ex.: Sugestão ou dúvida sobre o protótipo">
+
+                <label for="mensagem-contato">Mensagem:</label>
+                <textarea id="mensagem-contato" rows="5" placeholder="Escreva sua mensagem de teste aqui"></textarea>
+
+                <p class="centro">
+                    <button type="submit" class="botao">Validar mensagem</button>
+                </p>
+            </form>
+
+            <p id="retorno-contato" class="aviso"></p>
+        </article>
+
+        <aside>
+            <h3>Aviso do protótipo</h3>
+            <p>Este canal é exclusivo para demonstração acadêmica da turma <strong>1TDSPT</strong> na FIAP. Em ocorrências reais de alagamento ou risco de deslizamento, procure sempre a Defesa Civil e os órgãos oficiais.</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>AlertaJá — Projeto Acadêmico FIAP</p>
+    </footer>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/validacao.js"></script>
+</body>
+</html>
