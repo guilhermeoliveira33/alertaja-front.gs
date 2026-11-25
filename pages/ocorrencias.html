@@ -3,67 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlertaJá - Registrar Ocorrência</title>
+    <title>AlertaJá - Ocorrências</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="pagina-ocorrencias">
     <header>
         <h1>AlertaJá</h1>
-        <p>Cadastro demonstrativo de ocorrência e prevenção</p>
-        <button type="button" id="btn-menu">☰ Menu</button>
+        <p>Monitoramento e prevenção de enchentes e deslizamentos</p>
+        <button type="button" id="btn-menu" aria-expanded="false">Menu</button>
     </header>
 
-    <nav id="menu-principal">
+    <nav>
         <a href="../index.html">Início</a>
         <a href="mapa.html">Mapa</a>
-        <a href="ocorrencias.html">Registrar</a>
+        <a href="ocorrencias.html">Ocorrências</a>
         <a href="sobre.html">Sobre</a>
         <a href="faq.html">FAQ</a>
         <a href="contato.html">Contato</a>
-        <a href="integrantes.html">Equipe</a>
+        <a href="integrantes.html">Integrantes</a>
     </nav>
 
     <main>
         <article>
-            <h2>Registrar Ocorrência (Demonstração)</h2>
-            <p>Preencha os campos abaixo para simular um relato e classificar o nível da água. Este é um protótipo acadêmico com dados ilustrativos, não salva informações em servidor externo e não substitui a Defesa Civil.</p>
-
+            <h2>Registrar ocorrência</h2>
             <form id="form-ocorrencia">
-                <label for="bairro-ocorrencia">Bairro:</label>
-                <input type="text" id="bairro-ocorrencia" placeholder="Ex.: Penha">
+                <label for="tipo">Tipo de ocorrência</label>
+                <input type="text" id="tipo" name="tipo" placeholder="Ex.: Alagamento ou deslizamento" required>
 
-                <label for="rua-ocorrencia">Rua ou ponto de referência:</label>
-                <input type="text" id="rua-ocorrencia" placeholder="Ex.: Rua Exemplo A">
+                <label for="bairro">Bairro ou região</label>
+                <input type="text" id="bairro" name="bairro" placeholder="Ex.: Vila Prudente" required>
 
-                <label for="nivel-agua">Nível da água (cm):</label>
-                <input type="number" id="nivel-agua" step="0.1" min="0" max="500" placeholder="Ex.: 65">
-
-                <label for="descricao-ocorrencia">Descrição do ponto:</label>
-                <input type="text" id="descricao-ocorrencia" placeholder="Ex.: Acúmulo de água na via">
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" name="descricao" placeholder="Informe o que está acontecendo no local" required></textarea>
 
                 <p class="centro">
-                    <button type="submit" class="botao">Gerar relato ilustrativo</button>
+                    <button type="submit" class="botao">Registrar</button>
                 </p>
             </form>
-
-            <p id="mensagem-ocorrencia" class="aviso"></p>
-            <div id="resultado-ocorrencia"></div>
         </article>
 
         <aside>
-            <h3>Classificação e prevenção</h3>
-            <p><strong>Abaixo de 20 cm:</strong> BAIXO — atenção ao transitar.</p>
-            <p><strong>20 até 49,9 cm:</strong> MODERADO — evite vias com acúmulo ou correnteza.</p>
-            <p><strong>A partir de 50 cm:</strong> ALTO — risco elevado; não atravesse a pé ou de veículo.</p>
-            <p>Em ocorrências reais, procure rotas seguras e acompanhe os canais oficiais da Defesa Civil.</p>
+            <h3>Ocorrências registradas</h3>
+            <div id="lista-ocorrencias">
+                <p id="sem-ocorrencias">Nenhuma ocorrência registrada ainda.</p>
+            </div>
         </aside>
     </main>
 
     <footer>
-        <p>AlertaJá — Projeto Acadêmico FIAP</p>
+        <p>AlertaJá — Monitoramento Urbano e Prevenção de Riscos</p>
     </footer>
 
     <script src="../js/menu.js"></script>
-    <script src="../js/solucao.js"></script>
 </body>
 </html>

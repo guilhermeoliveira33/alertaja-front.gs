@@ -4,48 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlertaJá - FAQ</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="pagina-faq">
     <header>
         <h1>AlertaJá</h1>
-        <p>Perguntas frequentes sobre o protótipo e a prevenção</p>
-        <button type="button" id="btn-menu">☰ Menu</button>
+        <p>Perguntas frequentes sobre o monitoramento e prevenção</p>
+        <button type="button" id="btn-menu" aria-expanded="false">Menu</button>
     </header>
 
-    <nav id="menu-principal">
+    <nav>
         <a href="../index.html">Início</a>
         <a href="mapa.html">Mapa</a>
-        <a href="ocorrencias.html">Registrar</a>
+        <a href="ocorrencias.html">Ocorrências</a>
         <a href="sobre.html">Sobre</a>
         <a href="faq.html">FAQ</a>
         <a href="contato.html">Contato</a>
-        <a href="integrantes.html">Equipe</a>
+        <a href="integrantes.html">Integrantes</a>
     </nav>
 
     <main>
         <article>
-            <h2>Perguntas Frequentes (FAQ)</h2>
+            <h2>Perguntas frequentes</h2>
 
-            <h3>1. Os dados mostrados no site são em tempo real?</h3>
-            <p>Não. Todos os bairros, medições e relatos exibidos nesta versão são ilustrativos para demonstração acadêmica da Global Solution da FIAP.</p>
+            <details class="faq-item">
+                <summary>Como funciona o AlertaJá?</summary>
+                <p>O sistema reúne informações de áreas com risco de enchentes e deslizamentos para facilitar a consulta e o registro de ocorrências.</p>
+            </details>
 
-            <h3>2. Como funciona a classificação de nível da água?</h3>
-            <p>Na simulação da página de ocorrências, níveis abaixo de 20 cm aparecem como <strong>BAIXO</strong>, de 20 até 49,9 cm como <strong>MODERADO</strong> e a partir de 50 cm como <strong>ALTO</strong>.</p>
+            <details class="faq-item">
+                <summary>Como registrar uma ocorrência?</summary>
+                <p>Acesse a página de Ocorrências, informe o tipo de problema, o bairro ou região e os detalhes do local, depois clique em Registrar.</p>
+            </details>
 
-            <h3>3. Os registros feitos nos formulários ficam salvos?</h3>
-            <p>Não. As informações são tratadas apenas na tela do navegador durante o uso demonstrativo, sem envio para servidor externo ou banco de dados.</p>
+            <details class="faq-item">
+                <summary>Como são classificados os níveis de risco?</summary>
+                <p>As áreas são divididas por nível de atenção conforme a vulnerabilidade local e os registros de chuva ou movimentação de encosta.</p>
+            </details>
 
-            <h3>4. O AlertaJá substitui os órgãos oficiais?</h3>
-            <p>Não. Em situações reais de chuva intensa, alagamento ou risco de deslizamento, procure sempre rotas seguras e acompanhe os comunicados oficiais da Defesa Civil.</p>
-
-            <h3>5. Quem desenvolveu este protótipo?</h3>
-            <p>O projeto foi desenvolvido pela equipe formada por Guilherme de Oliveira Andrade, Erick Medeiros Dantas e Matheus Silva Matias de Medeiros na FIAP.</p>
+            <details class="faq-item">
+                <summary>O que fazer em situação de emergência?</summary>
+                <p>Procure um local seguro longe de encostas e áreas alagadas e acione a Defesa Civil ou os serviços de emergência.</p>
+            </details>
         </article>
     </main>
 
     <footer>
-        <p>AlertaJá — Projeto Acadêmico FIAP</p>
+        <p>AlertaJá — Monitoramento Urbano e Prevenção de Riscos</p>
     </footer>
 
     <script src="../js/menu.js"></script>
