@@ -1,38 +1,90 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const formContato = document.getElementById("form-contato");
-    const retornoContato = document.getElementById("retorno-contato");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("main form");
+    if (!form) {
+        return;
+    }
 
-    if (!formContato || !retornoContato) return;
+    let aviso = document.getElementById("retorno-contato");
+    if (!aviso) {
+        aviso = document.createElement("p");
+        aviso.id = "retorno-contato";
+        aviso.className = "aviso";
+        form.insertAdjacentElement("afterend", aviso);
+    }
+    aviso.style.display = "none";
 
-    retornoContato.setAttribute("role", "status");
-    retornoContato.setAttribute("aria-live", "polite");
+    const listaOcorrencias = document.getElementById("lista-ocorrencias");
+    const semOcorrencias = document.getElementById("sem-ocorrencias");
 
-    const emailValido = (valor) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    formContato.addEventListener("submit", (evento) => {
-        evento.preventDefault();
+        const campos = form.querySelectorAll("input, textarea, select");
+        const valores = [];
 
-        const nomeInput = formContato.querySelector("#nome-contato, #nome, input[type='text']");
-        const emailInput = formContato.querySelector("#email-contato, #email, input[type='email']");
-        const assuntoInput = formContato.querySelector("#assunto-contato, #assunto");
-        const mensagemInput = formContato.querySelector("#mensagem-contato, #mensagem, textarea");
+        for (let i = 0; i < campos.length; i++) {
+            const tipo = campos[i].type;
+            if (tipo === "submit" || tipo === "button" || tipo === "reset") {
+                continue;
+            }
 
-        const nome = nomeInput ? nomeInput.value.trim() : "";
-        const email = emailInput ? emailInput.value.trim() : "";
-        const assunto = assuntoInput ? assuntoInput.value.trim() : "";
-        const mensagem = mensagemInput ? mensagemInput.value.trim() : "";
+            const valor = campos[i].value.trim();
 
-        if (!nome || !email || !assunto || !mensagem) {
-            retornoContato.textContent = "Preencha todos os campos antes de enviar.";
-            return;
+            if (valor === "") {
+                aviso.textContent = "Preencha todos os campos antes de enviar.";
+                aviso.style.display = "block";
+                campos[i].focus();
+                return;
+            }
+
+            if (tipo === "email") {
+                if (valor.indexOf("@") === -1 || valor.indexOf(".") === -1) {
+                    aviso.textContent = "Digite um e-mail válido.";
+                    aviso.style.display = "block";
+                    campos[i].focus();
+                    return;
+                }
+            }
+
+            valores.push(valor);
         }
 
-        if (!emailValido(email)) {
-            retornoContato.textContent = "Digite um e-mail válido.";
-            return;
+        const primeiro = valores[0] || "";
+        const segundo = valores[1] || "";
+        const terceiro = valores[2] || "";
+
+        if (document.body.classList.contains("pagina-contato")) {
+            aviso.textContent = "Mensagem enviada por " + primeiro + ".";
+        } else {
+            aviso.textContent = segundo
+                ? "Ocorrência registrada: " + primeiro + " - " + segundo + "."
+                : "Ocorrência registrada: " + primeiro + ".";
+
+            if (listaOcorrencias) {
+                if (semOcorrencias) {
+                    semOcorrencias.style.display = "none";
+                }
+
+                const card = document.createElement("div");
+                card.className = "cartao";
+
+                const titulo = document.createElement("p");
+                const forte = document.createElement("strong");
+                forte.textContent = segundo ? primeiro + " - " + segundo : primeiro;
+                titulo.appendChild(forte);
+                card.appendChild(titulo);
+
+                if (terceiro) {
+                    const desc = document.createElement("p");
+                    desc.textContent = terceiro;
+                    card.appendChild(desc);
+                }
+
+                listaOcorrencias.prepend(card);
+            }
         }
 
-        retornoContato.textContent = "Mensagem enviada com sucesso.";
-        formContato.reset();
+        aviso.style.display = "block";
+        form.reset();
     });
 });

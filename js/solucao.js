@@ -1,156 +1,92 @@
-const pontosBairros = [
-    {
-        bairro: "Penha",
-        local: "Rua Exemplo A — Região da Penha",
-        nivel: "MODERADO",
-        agua: "28 cm",
-        orientacao: "Evite trechos com lâmina d'água acumulada e acompanhe rotas alternativas."
-    },
-    {
-        bairro: "Tatuapé",
-        local: "Avenida Exemplo B — Região do Tatuapé",
-        nivel: "BAIXO",
-        agua: "12 cm",
-        orientacao: "Atenção ao transitar em pontos com escoamento mais lento durante chuva."
-    },
-    {
-        bairro: "Itaquera",
-        local: "Rua Exemplo C — Região de Itaquera",
-        nivel: "ALTO",
-        agua: "65 cm",
-        orientacao: "Risco elevado: não atravesse a pé ou de veículo; procure local seguro e a Defesa Civil."
-    }
-];
-
-function renderizarBairros(filtroTexto = "") {
-    const lista = document.getElementById("lista-bairros");
-    if (!lista) return;
-
-    const termo = filtroTexto.trim().toLowerCase();
-    const filtrados = pontosBairros.filter((item) => {
-        if (!termo || termo === "todos") return true;
-        return item.bairro.toLowerCase().includes(termo) || item.local.toLowerCase().includes(termo);
-    });
-
-    lista.innerHTML = "";
-
-    if (filtrados.length === 0) {
-        const aviso = document.createElement("p");
-        aviso.className = "aviso";
-        aviso.textContent = "Nenhum ponto simulado encontrado para esse filtro. Teste Penha, Tatuapé ou Itaquera.";
-        lista.appendChild(aviso);
-        return;
-    }
-
-    filtrados.forEach((ponto) => {
-        const cartao = document.createElement("article");
-        cartao.className = "cartao";
-
-        const titulo = document.createElement("h3");
-        titulo.textContent = `${ponto.bairro} — Nível ${ponto.nivel} (${ponto.agua})`;
-
-        const local = document.createElement("p");
-        local.textContent = `Ponto simulado: ${ponto.local}`;
-
-        const orientacao = document.createElement("p");
-        orientacao.textContent = `Orientação: ${ponto.orientacao}`;
-
-        cartao.appendChild(titulo);
-        cartao.appendChild(local);
-        cartao.appendChild(orientacao);
-        lista.appendChild(cartao);
-    });
-}
-
-function classificarNivelAgua(cm) {
-    if (cm < 20) return "BAIXO";
-    if (cm < 50) return "MODERADO";
-    return "ALTO";
-}
-
-function orientacaoPorNivel(nivel) {
-    if (nivel === "BAIXO") {
-        return "Atenção redobrada ao passar pela via e observe a evolução da chuva.";
-    }
-    if (nivel === "MODERADO") {
-        return "Evite áreas com acúmulo de água ou correnteza e busque vias mais altas.";
-    }
-    return "Risco elevado: não atravesse a pé ou de veículo, procure abrigo seguro e siga a Defesa Civil.";
-}
-
-function configurarMapa() {
+document.addEventListener("DOMContentLoaded", function () {
+    const listaBairros = document.getElementById("lista-bairros");
     const campoBusca = document.getElementById("filtro-bairro");
     const botoesBairro = document.querySelectorAll(".btn-bairro");
 
-    if (campoBusca) {
-        campoBusca.addEventListener("input", () => {
-            renderizarBairros(campoBusca.value);
+    if (!listaBairros) {
+        return;
+    }
+
+    const bairros = [
+        {
+            nome: "Penha",
+            risco: "Alto",
+            classeRisco: "risco-alto",
+            classeEtiqueta: "etiqueta-alto",
+            descricao: "Pontos sujeitos a acúmulo de água em chuvas intensas. Atenção em vias próximas a córregos."
+        },
+        {
+            nome: "Tatuapé",
+            risco: "Médio",
+            classeRisco: "risco-medio",
+            classeEtiqueta: "etiqueta-medio",
+            descricao: "Trechos com retenção temporária em pancadas fortes. Acompanhe os avisos locais."
+        },
+        {
+            nome: "Itaquera",
+            risco: "Baixo",
+            classeRisco: "risco-baixo",
+            classeEtiqueta: "etiqueta-baixo",
+            descricao: "Condição mais estável na maior parte do bairro, com atenção pontual em áreas baixas."
+        }
+    ];
+
+    function mostrarBairros(filtroTexto) {
+        const termo = (filtroTexto || "").trim().toLowerCase();
+        listaBairros.innerHTML = "";
+
+        let encontrou = 0;
+
+        for (let i = 0; i < bairros.length; i++) {
+            const bairro = bairros[i];
+            const nomeMinusculo = bairro.nome.toLowerCase();
+
+            if (termo === "" || termo === "todos" || nomeMinusculo.indexOf(termo) !== -1) {
+                encontrou++;
+
+                const card = document.createElement("div");
+                card.className = "cartao " + bairro.classeRisco;
+
+                const titulo = document.createElement("h3");
+                titulo.textContent = bairro.nome;
+
+                const etiqueta = document.createElement("span");
+                etiqueta.className = "etiqueta-risco " + bairro.classeEtiqueta;
+                etiqueta.textContent = "Risco " + bairro.risco;
+
+                const texto = document.createElement("p");
+                texto.textContent = bairro.descricao;
+
+                card.appendChild(titulo);
+                card.appendChild(etiqueta);
+                card.appendChild(texto);
+
+                listaBairros.appendChild(card);
+            }
+        }
+
+        if (encontrou === 0) {
+            const vazio = document.createElement("p");
+            vazio.textContent = "Nenhum bairro encontrado para esse filtro.";
+            listaBairros.appendChild(vazio);
+        }
+    }
+
+    mostrarBairros("");
+
+    for (let i = 0; i < botoesBairro.length; i++) {
+        botoesBairro[i].addEventListener("click", function () {
+            const bairroClicado = this.getAttribute("data-bairro") || "";
+            if (campoBusca) {
+                campoBusca.value = bairroClicado === "Todos" ? "" : bairroClicado;
+            }
+            mostrarBairros(bairroClicado);
         });
     }
 
-    botoesBairro.forEach((botao) => {
-        botao.addEventListener("click", () => {
-            const bairroSelecionado = botao.dataset.bairro || "";
-            if (campoBusca) {
-                campoBusca.value = bairroSelecionado === "Todos" ? "" : bairroSelecionado;
-            }
-            renderizarBairros(bairroSelecionado);
+    if (campoBusca) {
+        campoBusca.addEventListener("input", function () {
+            mostrarBairros(campoBusca.value);
         });
-    });
-
-    renderizarBairros();
-}
-
-function configurarOcorrencias() {
-    const form = document.getElementById("form-ocorrencia");
-    const lista = document.getElementById("lista-ocorrencias");
-    if (!form || !lista) return;
-
-    const inputTipo = document.getElementById("tipo");
-    const inputBairro = document.getElementById("bairro");
-    const inputDescricao = document.getElementById("descricao");
-    const semOcorrencias = document.getElementById("sem-ocorrencias");
-
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const tipo = inputTipo ? inputTipo.value.trim() : "";
-        const bairro = inputBairro ? inputBairro.value.trim() : "";
-        const descricao = inputDescricao ? inputDescricao.value.trim() : "";
-
-        if (!tipo || !bairro || !descricao) return;
-
-        if (semOcorrencias) {
-            semOcorrencias.style.display = "none";
-        }
-
-        const cartao = document.createElement("article");
-        cartao.className = "cartao risco-alto";
-
-        const etiqueta = document.createElement("span");
-        etiqueta.className = "etiqueta-risco etiqueta-alto";
-        etiqueta.textContent = "Risco alto";
-
-        const titulo = document.createElement("h3");
-        titulo.textContent = `${tipo} — ${bairro}`;
-
-        const pDesc = document.createElement("p");
-        pDesc.textContent = `Relato: ${descricao}`;
-
-        const pOrient = document.createElement("p");
-        pOrient.textContent = `Orientação: ${orientacaoPorNivel("ALTO")}`;
-
-        cartao.appendChild(etiqueta);
-        cartao.appendChild(titulo);
-        cartao.appendChild(pDesc);
-        cartao.appendChild(pOrient);
-        lista.prepend(cartao);
-
-        form.reset();
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    configurarMapa();
-    configurarOcorrencias();
+    }
 });
