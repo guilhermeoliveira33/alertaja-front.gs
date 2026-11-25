@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlertaJá - Contato</title>
+    <link rel="shortcut icon" href="../images/icone-alertaja.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="pagina-contato">
     <header>
         <h1>AlertaJá</h1>
         <p>Envie dúvidas, sugestões ou informações sobre áreas de risco</p>
-        <button type="button" id="btn-menu">☰ Menu</button>
+        <button type="button" id="btn-menu" aria-expanded="false">☰ Menu</button>
     </header>
 
     <nav id="menu-principal">
@@ -26,27 +27,25 @@
     <main>
         <article>
             <h2>Fale Conosco</h2>
-            <p>Preencha os campos abaixo para entrar em contato com a equipe do <strong>AlertaJá</strong>.</p>
+            <p>Preencha os campos abaixo para falar com a equipe do <strong>AlertaJá</strong>.</p>
 
             <form id="form-contato">
                 <label for="nome-contato">Nome completo:</label>
-                <input type="text" id="nome-contato" placeholder="Digite seu nome completo">
+                <input type="text" id="nome-contato" placeholder="Digite seu nome completo" required>
 
                 <label for="email-contato">E-mail:</label>
-                <input type="email" id="email-contato" placeholder="seuemail@exemplo.com">
+                <input type="email" id="email-contato" placeholder="seuemail@exemplo.com" required>
 
                 <label for="assunto-contato">Assunto:</label>
-                <input type="text" id="assunto-contato" placeholder="Ex.: Dúvida ou sugestão">
+                <input type="text" id="assunto-contato" placeholder="Ex.: Dúvida ou sugestão" required>
 
                 <label for="mensagem-contato">Mensagem:</label>
-                <textarea id="mensagem-contato" rows="5" placeholder="Escreva sua mensagem"></textarea>
+                <textarea id="mensagem-contato" rows="5" placeholder="Escreva sua mensagem" required></textarea>
 
                 <p class="centro">
                     <button type="submit" class="botao">Enviar mensagem</button>
                 </p>
             </form>
-
-            <p id="retorno-contato" class="aviso"></p>
         </article>
 
         <aside>
@@ -60,6 +59,5 @@
     </footer>
 
     <script src="../js/menu.js"></script>
-    <script src="../js/validacao.js"></script>
 </body>
 </html>

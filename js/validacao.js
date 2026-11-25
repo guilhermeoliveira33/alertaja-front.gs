@@ -1,21 +1,38 @@
-const formContato = document.getElementById("form-contato");
-const retornoContato = document.getElementById("retorno-contato");
+document.addEventListener("DOMContentLoaded", () => {
+    const formContato = document.getElementById("form-contato");
+    const retornoContato = document.getElementById("retorno-contato");
 
-if (formContato && retornoContato) {
-    formContato.addEventListener("submit", function (evento) {
+    if (!formContato || !retornoContato) return;
+
+    retornoContato.setAttribute("role", "status");
+    retornoContato.setAttribute("aria-live", "polite");
+
+    const emailValido = (valor) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+
+    formContato.addEventListener("submit", (evento) => {
         evento.preventDefault();
 
-        const nome = document.getElementById("nome-contato").value.trim();
-        const email = document.getElementById("email-contato").value.trim();
-        const assunto = document.getElementById("assunto-contato").value.trim();
-        const mensagem = document.getElementById("mensagem-contato").value.trim();
+        const nomeInput = formContato.querySelector("#nome-contato, #nome, input[type='text']");
+        const emailInput = formContato.querySelector("#email-contato, #email, input[type='email']");
+        const assuntoInput = formContato.querySelector("#assunto-contato, #assunto");
+        const mensagemInput = formContato.querySelector("#mensagem-contato, #mensagem, textarea");
+
+        const nome = nomeInput ? nomeInput.value.trim() : "";
+        const email = emailInput ? emailInput.value.trim() : "";
+        const assunto = assuntoInput ? assuntoInput.value.trim() : "";
+        const mensagem = mensagemInput ? mensagemInput.value.trim() : "";
 
         if (!nome || !email || !assunto || !mensagem) {
             retornoContato.textContent = "Preencha todos os campos antes de enviar.";
             return;
         }
 
-        retornoContato.textContent = `Mensagem enviada, ${nome}. Recebemos seu contato sobre "${assunto}".`;
+        if (!emailValido(email)) {
+            retornoContato.textContent = "Digite um e-mail válido.";
+            return;
+        }
+
+        retornoContato.textContent = "Mensagem enviada com sucesso.";
         formContato.reset();
     });
-}
+});
