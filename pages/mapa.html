@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlertaJá - Mapa</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>AlertaJá</h1>
+        <p>Consulta ilustrativa por bairro</p>
+        <button type="button" id="btn-menu">☰ Menu</button>
+    </header>
+
+    <nav id="menu-principal">
+        <a href="../index.html">Início</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="ocorrencias.html">Registrar</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contato.html">Contato</a>
+        <a href="integrantes.html">Equipe</a>
+    </nav>
+
+    <main>
+        <article>
+            <h2>Mapa e Consulta por Bairro</h2>
+            <p>Clique em um bairro ou digite o nome para ver os exemplos simulados (dados fictícios apenas para demonstração acadêmica).</p>
+
+            <img src="../images/mapa-bairros.jpg" alt="Mapa ilustrativo com pontos de alagamento" class="img-banner">
+
+            <p class="centro">
+                <button type="button" class="botao btn-bairro" data-bairro="Penha">Penha</button>
+                <button type="button" class="botao btn-bairro" data-bairro="Tatuapé">Tatuapé</button>
+                <button type="button" class="botao btn-bairro" data-bairro="Itaquera">Itaquera</button>
+                <button type="button" class="botao btn-bairro" data-bairro="Todos">Todos</button>
+            </p>
+
+            <label for="filtro-bairro">Buscar bairro:</label>
+            <input type="text" id="filtro-bairro" placeholder="Digite Penha, Tatuapé ou Itaquera">
+
+            <div id="lista-bairros"></div>
+        </article>
+    </main>
+
+    <footer>
+        <p>AlertaJá — Projeto Acadêmico FIAP</p>
+    </footer>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/solucao.js"></script>
+</body>
+</html>
