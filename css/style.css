@@ -1,118 +1,571 @@
+@charset "UTF-8";
+
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-principal: #0077b6;
+    --cor-secundaria: #00b4d8;
+    --cor-escura: #12304a;
+    --cor-clara: #f2f7fb;
+    --cor-texto: #263746;
+    --cor-branca: #ffffff;
+    --cor-borda: #dce7ef;
+
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    --sombra: 0 8px 25px rgba(18, 48, 74, 0.08);
+    --sombra-hover: 0 12px 30px rgba(18, 48, 74, 0.13);
+    --transicao: all 0.25s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto);
+    background-color: var(--cor-clara);
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Cabeçalho */
+header {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--cor-escura), var(--cor-principal));
+    color: var(--cor-branca);
+    text-align: center;
+    padding: 3rem 1.25rem;
+    box-shadow: var(--sombra);
+}
+
+header > h1 {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+header > p {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    color: #e5f5fc;
+    font-size: 1.05rem;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 35px solid rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+    right: 8%;
+    top: -100px;
+    pointer-events: none;
+}
+
+/* Variações de cabeçalho por página */
+body.pagina-inicio > header {
+    background: linear-gradient(120deg, #12304a, #0077b6, #00b4d8);
+}
+
+body.pagina-mapa > header,
+body.pagina-faq > header {
+    background: linear-gradient(120deg, #12304a, #0077b6);
+}
+
+body.pagina-ocorrencias > header {
+    background: linear-gradient(120deg, #12304a, #087e9e);
+}
+
+body.pagina-sobre > header {
+    background: linear-gradient(120deg, #12304a, #155e83);
+}
+
+body.pagina-contato > header {
+    background: linear-gradient(120deg, #12304a, #0086a8);
+}
+
+body.pagina-equipe > header {
+    background: linear-gradient(135deg, #12304a, #0077b6);
+}
+
+/* Botão do menu mobile */
+#btn-menu {
+    display: none;
+    margin: 1rem auto 0;
+    padding: 0.7rem 1.3rem;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-escura);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+#btn-menu:hover {
+    background-color: var(--cor-branca);
+    transform: translateY(-2px);
+}
+
+/* Menu de navegação */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background-color: var(--cor-escura);
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+nav > a {
+    color: var(--cor-branca);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: var(--transicao);
+}
+
+nav > a:hover {
+    color: var(--cor-escura);
+    background-color: var(--cor-secundaria);
+    transform: translateY(-2px);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--cor-secundaria);
+    outline-offset: 3px;
+}
+
+/* Conteúdo principal */
+main {
+    width: min(1100px, calc(100% - 2rem));
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background-color: var(--cor-branca);
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+}
+
 main h2 {
-    color: #082e55;
-    font-size: 1.6em;
-    margin-bottom: 12px;
+    color: var(--cor-escura);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.3;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 3px solid var(--cor-secundaria);
 }
 
 main h3 {
-    color: #ffffff;
-    background-color: #082e55;
-    padding: 8px 12px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    font-size: 1.15em;
+    color: var(--cor-principal);
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.6rem;
 }
 
 main p {
-    margin: 12px 0;
-    text-align: justify;
+    margin: 0.85rem 0;
 }
 
 p.centro {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin: 18px 0;
+    gap: 0.85rem;
+    margin: 1.5rem 0;
 }
 
+/* Imagens e banners */
 .img-banner {
     width: 100%;
+    max-height: 400px;
+    object-fit: cover;
     display: block;
-    margin: 12px 0 16px 0;
-    border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    margin: 1.5rem 0;
+    border-radius: 14px;
+    box-shadow: var(--sombra);
 }
 
+body.pagina-sobre .img-banner {
+    max-height: 360px;
+    object-position: center;
+}
+
+/* Botões */
 .botao {
     display: inline-block;
-    background-color: #082e55;
-    color: #ffffff;
+    background-color: var(--cor-principal);
+    color: var(--cor-branca);
+    padding: 0.8rem 1.5rem;
     text-decoration: none;
-    font-weight: bold;
-    padding: 10px 16px;
+    border-radius: 9px;
+    font-weight: 700;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.25s ease;
+    transition: var(--transicao);
 }
 
 .botao:hover {
-    background-color: #13508c;
+    background-color: var(--cor-escura);
+    color: var(--cor-branca);
+    transform: translateY(-3px);
+    box-shadow: var(--sombra);
 }
 
+/* Avisos e destaques */
 aside {
-    background-color: #e4eef7;
-    padding: 16px;
-    margin-top: 22px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #e8f7fc;
+    border-left: 5px solid var(--cor-secundaria);
+    border-radius: 10px;
 }
 
-aside h3 {
-    margin: -16px -16px 12px -16px;
-    border-radius: 8px 8px 0 0;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    color: #082e55;
-    margin: 12px 0 6px 0;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #8fa9c2;
-    border-radius: 6px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1em;
-}
-
-.cartao {
-    background-color: #f4f8fc;
-    border-left: 5px solid #082e55;
-    padding: 14px;
-    margin-top: 14px;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-}
-
-.cartao img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    object-position: center 20%;
-    display: block;
-    margin: 10px 0;
-    border-radius: 50%;
-    border: 3px solid #082e55;
+aside > h3 {
+    margin-top: 0;
+    color: var(--cor-escura);
 }
 
 .aviso {
-    font-weight: bold;
-    color: #082e55;
-    margin-top: 12px;
+    font-weight: 700;
+    color: var(--cor-escura);
+    margin-top: 1rem;
 }
 
-footer {
-    background-color: #051d36;
+/* Formulários */
+label {
+    display: block;
+    margin: 1rem 0 0.4rem;
+    font-weight: 700;
+    color: var(--cor-escura);
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #cbd9e4;
+    border-radius: 9px;
+    font-family: var(--fonte-principal);
+    font-size: 1rem;
+    color: var(--cor-texto);
+    background-color: var(--cor-branca);
+    transition: var(--transicao);
+}
+
+textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--cor-principal);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 119, 182, 0.12);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #8999a6;
+}
+
+/* Páginas secundárias */
+body.pagina-mapa main,
+body.pagina-ocorrencias main,
+body.pagina-sobre main,
+body.pagina-faq main,
+body.pagina-contato main,
+body.pagina-equipe main {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0.5rem 1rem 2rem;
+}
+
+body.pagina-sobre main > article,
+body.pagina-faq main > article,
+body.pagina-contato main > article,
+body.pagina-equipe main > article {
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-borda);
+    border-radius: 14px;
+    padding: 2rem;
+    box-shadow: var(--sombra);
+}
+
+/* Página do mapa */
+body.pagina-mapa #lista-bairros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+body.pagina-mapa .item-lista,
+body.pagina-mapa .cartao {
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-borda);
+    border-left: 5px solid var(--cor-secundaria);
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: var(--sombra);
+    transition: var(--transicao);
+}
+
+body.pagina-mapa .item-lista:hover,
+body.pagina-mapa .cartao:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+}
+
+body.pagina-mapa .item-lista h3,
+body.pagina-mapa .cartao h3 {
+    color: var(--cor-escura);
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+}
+
+/* Níveis e etiquetas de risco */
+.risco-alto {
+    background-color: #ffe4e2;
+    color: #9f1212;
+    border: 1px solid #fca5a5;
+    border-left: 6px solid #e11d1d;
+}
+
+.risco-medio {
+    background-color: #fff3d6;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+    border-left: 5px solid #f59e0b;
+}
+
+.risco-baixo {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    border-left: 5px solid #64748b;
+}
+
+.etiqueta-risco {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin: 8px 0;
+}
+
+.etiqueta-alto {
+    background-color: #dc2626;
     color: #ffffff;
+}
+
+.etiqueta-medio {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.etiqueta-baixo {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+/* Página de ocorrências */
+body.pagina-ocorrencias main > article,
+body.pagina-ocorrencias aside {
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-borda);
+    border-radius: 14px;
+    padding: 1.7rem;
+    margin-top: 1.5rem;
+    box-shadow: var(--sombra);
+}
+
+body.pagina-ocorrencias #lista-ocorrencias {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+body.pagina-ocorrencias .cartao {
+    background-color: var(--cor-clara);
+    border: 1px solid var(--cor-borda);
+    border-left: 5px solid var(--cor-principal);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    transition: var(--transicao);
+}
+
+body.pagina-ocorrencias .cartao:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra);
+}
+
+body.pagina-ocorrencias .cartao p {
+    margin: 0.3rem 0;
+}
+
+/* FAQ */
+body.pagina-faq .faq-item {
+    background-color: #eaf5fa;
+    border-radius: 9px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+body.pagina-faq .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 0.85rem 1rem;
+    font-weight: 700;
+    color: var(--cor-escura);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+body.pagina-faq .faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+body.pagina-faq .faq-item summary::after {
+    content: "▾";
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+body.pagina-faq .faq-item[open] summary::after {
+    transform: rotate(180deg);
+}
+
+body.pagina-faq .faq-item p {
+    background-color: var(--cor-branca);
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border-top: 1px solid var(--cor-borda);
+}
+
+/* Página da equipe */
+.integrantes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.integrante {
+    flex: 1 1 230px;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    font-size: 0.9em;
-    padding: 14px;
+    gap: 0.8rem;
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-borda);
+    border-top: 4px solid var(--cor-principal);
+    border-radius: 14px;
+    padding: 1.5rem 1rem;
+    transition: var(--transicao);
+}
+
+.integrante:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+}
+
+.foto-integrante {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center 15%;
+    border-radius: 50%;
+    border: 4px solid #d9f3fa;
+    display: block;
+}
+
+.dados-integrante > h3 {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    color: var(--cor-escura);
+    font-size: 1.15rem;
+}
+
+.dados-integrante > p {
+    margin: 0.2rem 0;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--cor-escura);
+    color: var(--cor-branca);
+    text-align: center;
+    padding: 1.7rem 1rem;
+    margin-top: 3rem;
+    font-size: 0.95rem;
+}
+
+footer > p {
+    margin: 0.3rem 0;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 2.2rem 1rem;
+    }
+
+    main {
+        width: calc(100% - 1.5rem);
+        margin: 1.5rem auto;
+        padding: 1.4rem;
+    }
+
+    body.pagina-mapa main,
+    body.pagina-ocorrencias main,
+    body.pagina-sobre main,
+    body.pagina-faq main,
+    body.pagina-contato main,
+    body.pagina-equipe main {
+        padding: 0.5rem 0.5rem 1.5rem;
+    }
+
+    body.pagina-sobre main > article,
+    body.pagina-faq main > article,
+    body.pagina-contato main > article,
+    body.pagina-equipe main > article {
+        padding: 1.4rem;
+    }
 }
 
 @media screen and (max-width: 650px) {
@@ -127,5 +580,43 @@ footer {
     nav.aberto {
         display: flex;
         flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    nav > a {
+        width: 100%;
+        text-align: center;
+    }
+
+    main {
+        width: calc(100% - 1rem);
+        margin: 1rem auto;
+        padding: 1.1rem;
+        border-radius: 12px;
+    }
+
+    main h2 {
+        font-size: 1.5rem;
+    }
+
+    .img-banner {
+        max-height: 250px;
+    }
+
+    .integrante {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .botao {
+        text-align: center;
+    }
+
+    body.pagina-mapa #lista-bairros {
+        grid-template-columns: 1fr;
+    }
+
+    header::after {
+        right: -100px;
     }
 }
