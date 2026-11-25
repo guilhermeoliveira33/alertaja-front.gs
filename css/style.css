@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* Configurações gerais */
+
 * {
     margin: 0;
     padding: 0;
@@ -40,7 +40,7 @@ img {
     height: auto;
 }
 
-/* Cabeçalho */
+
 header {
     position: relative;
     overflow: hidden;
@@ -81,7 +81,7 @@ header::after {
     pointer-events: none;
 }
 
-/* Variações de cabeçalho por página */
+
 body.pagina-inicio > header {
     background: linear-gradient(120deg, #12304a, #0077b6, #00b4d8);
 }
@@ -107,7 +107,7 @@ body.pagina-equipe > header {
     background: linear-gradient(135deg, #12304a, #0077b6);
 }
 
-/* Botão do menu mobile */
+
 #btn-menu {
     display: none;
     margin: 1rem auto 0;
@@ -127,7 +127,7 @@ body.pagina-equipe > header {
     transform: translateY(-2px);
 }
 
-/* Menu de navegação */
+
 nav {
     display: flex;
     justify-content: center;
@@ -160,7 +160,7 @@ button:focus-visible {
     outline-offset: 3px;
 }
 
-/* Conteúdo principal */
+
 main {
     width: min(1100px, calc(100% - 2rem));
     margin: 2.5rem auto;
@@ -198,7 +198,7 @@ p.centro {
     margin: 1.5rem 0;
 }
 
-/* Imagens e banners */
+
 .img-banner {
     width: 100%;
     max-height: 400px;
@@ -210,11 +210,12 @@ p.centro {
 }
 
 body.pagina-sobre .img-banner {
-    max-height: 360px;
-    object-position: center;
+    max-height: 430px;
+    object-fit: cover;
+    object-position: center bottom;
 }
 
-/* Botões */
+
 .botao {
     display: inline-block;
     background-color: var(--cor-principal);
@@ -235,7 +236,7 @@ body.pagina-sobre .img-banner {
     box-shadow: var(--sombra);
 }
 
-/* Avisos e destaques */
+
 aside {
     margin-top: 2rem;
     padding: 1.5rem;
@@ -255,7 +256,7 @@ aside > h3 {
     margin-top: 1rem;
 }
 
-/* Formulários */
+
 label {
     display: block;
     margin: 1rem 0 0.4rem;
@@ -293,7 +294,7 @@ textarea::placeholder {
     color: #8999a6;
 }
 
-/* Páginas secundárias */
+
 body.pagina-mapa main,
 body.pagina-ocorrencias main,
 body.pagina-sobre main,
@@ -305,6 +306,7 @@ body.pagina-equipe main {
     padding: 0.5rem 1rem 2rem;
 }
 
+body.pagina-mapa main > article,
 body.pagina-sobre main > article,
 body.pagina-faq main > article,
 body.pagina-contato main > article,
@@ -316,7 +318,7 @@ body.pagina-equipe main > article {
     box-shadow: var(--sombra);
 }
 
-/* Página do mapa */
+
 body.pagina-mapa #lista-bairros {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -326,7 +328,7 @@ body.pagina-mapa #lista-bairros {
 
 body.pagina-mapa .item-lista,
 body.pagina-mapa .cartao {
-    background-color: var(--cor-branca);
+    background-color: var(--cor-clara);
     border: 1px solid var(--cor-borda);
     border-left: 5px solid var(--cor-secundaria);
     border-radius: 14px;
@@ -349,7 +351,7 @@ body.pagina-mapa .cartao h3 {
     margin-bottom: 0.8rem;
 }
 
-/* Níveis e etiquetas de risco */
+
 .risco-alto {
     background-color: #ffe4e2;
     color: #9f1212;
@@ -560,6 +562,7 @@ footer > p {
         padding: 0.5rem 0.5rem 1.5rem;
     }
 
+    body.pagina-mapa main > article,
     body.pagina-sobre main > article,
     body.pagina-faq main > article,
     body.pagina-contato main > article,
@@ -601,6 +604,11 @@ footer > p {
 
     .img-banner {
         max-height: 250px;
+    }
+
+    body.pagina-sobre .img-banner {
+        max-height: 290px;
+        object-position: center bottom;
     }
 
     .integrante {

@@ -37,7 +37,7 @@ function renderizarBairros(filtroTexto = "") {
     if (filtrados.length === 0) {
         const aviso = document.createElement("p");
         aviso.className = "aviso";
-        aviso.textContent = "Nenhum ponto ilustrativo encontrado para esse filtro. Teste Penha, Tatuapé ou Itaquera.";
+        aviso.textContent = "Nenhum ponto simulado encontrado para esse filtro. Teste Penha, Tatuapé ou Itaquera.";
         lista.appendChild(aviso);
         return;
     }
@@ -103,61 +103,54 @@ function configurarMapa() {
 
 function configurarOcorrencias() {
     const form = document.getElementById("form-ocorrencia");
-    if (!form) return;
+    const lista = document.getElementById("lista-ocorrencias");
+    if (!form || !lista) return;
 
-    const inputBairro = document.getElementById("bairro-ocorrencia");
-    const inputRua = document.getElementById("rua-ocorrencia");
-    const inputNivel = document.getElementById("nivel-agua");
-    const inputDescricao = document.getElementById("descricao-ocorrencia");
-    const mensagem = document.getElementById("mensagem-ocorrencia");
-    const resultado = document.getElementById("resultado-ocorrencia");
+    const inputTipo = document.getElementById("tipo");
+    const inputBairro = document.getElementById("bairro");
+    const inputDescricao = document.getElementById("descricao");
+    const semOcorrencias = document.getElementById("sem-ocorrencias");
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const bairro = inputBairro.value.trim();
-        const rua = inputRua.value.trim();
-        const nivelValor = Number(inputNivel.value);
-        const descricao = inputDescricao.value.trim();
+        const tipo = inputTipo ? inputTipo.value.trim() : "";
+        const bairro = inputBairro ? inputBairro.value.trim() : "";
+        const descricao = inputDescricao ? inputDescricao.value.trim() : "";
 
-        if (!bairro || !rua || !descricao || inputNivel.value.trim() === "") {
-            mensagem.textContent = "Preencha bairro, rua/referência, nível da água e descrição antes de gerar o relato.";
-            return;
+        if (!tipo || !bairro || !descricao) return;
+
+        if (semOcorrencias) {
+            semOcorrencias.style.display = "none";
         }
-
-        if (Number.isNaN(nivelValor) || nivelValor < 0 || nivelValor > 500) {
-            mensagem.textContent = "Informe um nível de água válido entre 0 cm e 500 cm.";
-            return;
-        }
-
-        const classificacao = classificarNivelAgua(nivelValor);
-        const orientacao = orientacaoPorNivel(classificacao);
-
-        mensagem.textContent = "Relato ilustrativo gerado na tela (protótipo sem envio externo e sem substituir a Defesa Civil).";
-        resultado.innerHTML = "";
 
         const cartao = document.createElement("article");
-        cartao.className = "cartao";
+        cartao.className = "cartao risco-alto";
+
+        const etiqueta = document.createElement("span");
+        etiqueta.className = "etiqueta-risco etiqueta-alto";
+        etiqueta.textContent = "Risco alto";
 
         const titulo = document.createElement("h3");
-        titulo.textContent = `${bairro} — Classificação: ${classificacao} (${nivelValor} cm)`;
-
-        const pRua = document.createElement("p");
-        pRua.textContent = `Local: ${rua}`;
+        titulo.textContent = `${tipo} — ${bairro}`;
 
         const pDesc = document.createElement("p");
         pDesc.textContent = `Relato: ${descricao}`;
 
         const pOrient = document.createElement("p");
-        pOrient.textContent = `Orientação: ${orientacao}`;
+        pOrient.textContent = `Orientação: ${orientacaoPorNivel("ALTO")}`;
 
+        cartao.appendChild(etiqueta);
         cartao.appendChild(titulo);
-        cartao.appendChild(pRua);
         cartao.appendChild(pDesc);
         cartao.appendChild(pOrient);
-        resultado.appendChild(cartao);
+        lista.prepend(cartao);
+
+        form.reset();
     });
 }
 
-configurarMapa();
-configurarOcorrencias();
+document.addEventListener("DOMContentLoaded", () => {
+    configurarMapa();
+    configurarOcorrencias();
+});
