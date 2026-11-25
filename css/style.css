@@ -332,7 +332,7 @@ body.pagina-equipe main > article {
     background-color: var(--cor-branca);
     color: var(--cor-texto);
     border-color: var(--cor-borda);
-    border-top: 4px solid #2563eb;
+    border-top: 4px solid #16a34a;
 }
 
 .etiqueta-risco {
@@ -355,8 +355,8 @@ body.pagina-equipe main > article {
 }
 
 .etiqueta-baixo {
-    background-color: #dbeafe;
-    color: #1d4ed8;
+    background-color: #dcfce7;
+    color: #15803d;
 }
 
 body.pagina-ocorrencias main > article,
