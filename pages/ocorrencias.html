@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlertaJá - Registrar Ocorrência</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>AlertaJá</h1>
+        <p>Cadastro demonstrativo de ocorrência e prevenção</p>
+        <button type="button" id="btn-menu">☰ Menu</button>
+    </header>
+
+    <nav id="menu-principal">
+        <a href="../index.html">Início</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="ocorrencias.html">Registrar</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contato.html">Contato</a>
+        <a href="integrantes.html">Equipe</a>
+    </nav>
+
+    <main>
+        <article>
+            <h2>Registrar Ocorrência (Demonstração)</h2>
+            <p>Preencha os campos abaixo para simular um relato e classificar o nível da água. Este é um protótipo acadêmico com dados ilustrativos e não salva informações em servidor externo.</p>
+
+            <form id="form-ocorrencia">
+                <label for="bairro-ocorrencia">Bairro:</label>
+                <input type="text" id="bairro-ocorrencia" placeholder="Ex.: Penha">
+
+                <label for="rua-ocorrencia">Rua ou ponto de referência:</label>
+                <input type="text" id="rua-ocorrencia" placeholder="Ex.: Rua Exemplo A">
+
+                <label for="nivel-agua">Nível da água (cm):</label>
+                <input type="number" id="nivel-agua" step="0.1" min="0" max="500" placeholder="Ex.: 65">
+
+                <label for="descricao-ocorrencia">Descrição do ponto:</label>
+                <input type="text" id="descricao-ocorrencia" placeholder="Ex.: Acúmulo de água na via">
+
+                <p class="centro">
+                    <button type="submit" class="botao">Gerar relato ilustrativo</button>
+                </p>
+            </form>
+
+            <p id="mensagem-ocorrencia" class="aviso"></p>
+            <div id="resultado-ocorrencia"></div>
+        </article>
+
+        <aside>
+            <h3>Orientação e classificação</h3>
+            <p><strong>Abaixo de 20 cm:</strong> BAIXO — atenção ao circular.</p>
+            <p><strong>20 até 49,9 cm:</strong> MODERADO — evite vias com acúmulo ou correnteza.</p>
+            <p><strong>A partir de 50 cm:</strong> ALTO — risco elevado; não atravesse a pé ou de veículo.</p>
+            <p>Em situações reais, busque rotas seguras e acompanhe os canais oficiais da Defesa Civil.</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>AlertaJá — Projeto Acadêmico FIAP</p>
+    </footer>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/solucao.js"></script>
+</body>
+</html>
